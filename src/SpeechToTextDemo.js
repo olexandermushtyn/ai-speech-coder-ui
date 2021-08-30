@@ -59,7 +59,8 @@ async function postData(url, data) {
 }
 
 async function downloadCode() {
-  const url = "http://localhost:3000/api/download-html";
+  const url =
+    "https://qoder-ai-server.herokuapp.com/api/commands/download-html";
   const response = await fetch(url, {
     method: "GET",
   });
@@ -94,9 +95,12 @@ class SpeechToTextDemo extends Component {
       interimText: "",
     });
     console.log(this.state.finalisedText[0]);
-    let response = postData("http://localhost:3000/api/commands/get-html", {
-      str: this.state.finalisedText[0],
-    });
+    let response = postData(
+      "https://qoder-ai-server.herokuapp.com/api/commands/get-html",
+      {
+        str: this.state.finalisedText[0],
+      }
+    );
     console.log(response);
     response.then((value) => {
       responseObj = value;
