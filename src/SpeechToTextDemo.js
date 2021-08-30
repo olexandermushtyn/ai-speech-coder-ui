@@ -211,7 +211,7 @@ class SpeechToTextDemo extends Component {
             </Paper>
 
             <Button
-              href="http://localhost:3000/api/commands/download-html"
+              href="https://qoder-ai-server.herokuapp.com/api/commands/download-html"
               color="primary"
               onClick={() => downloadCode()}
               target="_blanc"
