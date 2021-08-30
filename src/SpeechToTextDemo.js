@@ -215,7 +215,7 @@ class SpeechToTextDemo extends Component {
               color="primary"
               onClick={() => downloadCode()}
               target="_blanc"
-              download="code.html"
+              download
             >
               Download Code
             </Button>
