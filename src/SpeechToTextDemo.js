@@ -66,6 +66,7 @@ async function downloadCode() {
   });
   return await response;
 }
+
 class SpeechToTextDemo extends Component {
   state = {
     error: "",
@@ -225,7 +226,8 @@ class SpeechToTextDemo extends Component {
               <Grid container>
                 <Grid
                   item
-                  xs={8}
+                  sm={12}
+                  xl={8}
                   my={100}
                   marginY={100}
                   pr={10}
@@ -236,7 +238,7 @@ class SpeechToTextDemo extends Component {
                     style={{ height: "100%" }}
                   />
                 </Grid>
-                <Grid item xs={3} ml={25}>
+                <Grid item sm={12} xl={3} ml={25}>
                   <Table className={classes.table}>
                     <TableHead>
                       <TableRow>
