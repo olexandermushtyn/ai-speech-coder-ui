@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -17,6 +17,7 @@ import {
   Select,
   MenuItem,
   FormHelperText,
+  Input,
 } from "@material-ui/core";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import SpeechToText from "speech-to-text";
@@ -76,6 +77,8 @@ class SpeechToTextDemo extends Component {
     language: "en-US",
     code: "",
   };
+
+  inputRef = React.createRef();
 
   onAnythingSaid = (text) => {
     this.setState({ interimText: text });
@@ -166,6 +169,7 @@ class SpeechToTextDemo extends Component {
           </Button>
         );
       }
+
       content = (
         <Grid container spacing={8}>
           <Grid item xs={12} md={7}>
@@ -222,6 +226,48 @@ class SpeechToTextDemo extends Component {
             </Button>
           </Grid>
           <Grid item xs={12}>
+            <Typography variant="body1" gutterBottom>
+              Manual input
+            </Typography>
+            <Grid container>
+              <Paper
+                style={{
+                  marginBottom: "50px",
+                  minHeight: "50px",
+                  minWidth: "100px",
+                  padding: "25px",
+                }}
+              >
+                <Input inputRef={this.inputRef}></Input>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ marginLeft: "5px" }}
+                  onClick={() => {
+                    let responseObj = {};
+                    let response = postData(
+                      "https://qoder-ai-server.herokuapp.com/api/commands/get-html",
+                      {
+                        str: this.inputRef.current.value,
+                      }
+                    );
+                    console.log(response);
+                    response.then((value) => {
+                      responseObj = value;
+                      console.log(responseObj.html);
+                      if (responseObj.html === undefined);
+                      else {
+                        this.setState({
+                          code: formatter.render(responseObj.html),
+                        });
+                      }
+                    });
+                  }}
+                >
+                  Input
+                </Button>
+              </Paper>
+            </Grid>
             <Paper className={classes.paper}>
               <Grid container>
                 <Grid
