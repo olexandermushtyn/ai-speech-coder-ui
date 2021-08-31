@@ -226,6 +226,7 @@ class SpeechToTextDemo extends Component {
               <Grid container>
                 <Grid
                   item
+                  xs={12}
                   sm={12}
                   xl={8}
                   my={100}
